@@ -8,6 +8,9 @@ module.exports = {
 
 function get(){
     return db("resources")
+    .then(([id]) => {
+        return db("resources").where("id", id).first();
+    });
 }
 function create(resource){
     return db("resources").insert(resource)
