@@ -8,13 +8,10 @@ module.exports = {
 
 function get(){
     return db("resources")
-    .then(([id]) => {
-        return db("resources").where("id", id).first();
-    });
 }
 function create(resource){
-    return db("resources").insert(resource)
+    return db("resources").insert(resource, "resource_id")
         .then(([id]) => {
-            return db("resources").where("id", id).first();
+            return db("resources").where("resource_id", id).first();
         });
 }

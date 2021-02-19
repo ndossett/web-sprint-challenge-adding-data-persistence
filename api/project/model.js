@@ -10,8 +10,8 @@ function get(){
     return db("projects")
 }
 function create(project){
-    return db("projects").insert(project)
+    return db("projects").insert(project, "project_id")
         .then(([id]) => {
-            return db("projects").where("id", id).first();
-        });
+            return db("projects").where("project_id", id).first();
+        })
 }

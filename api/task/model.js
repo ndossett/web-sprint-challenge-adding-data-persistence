@@ -8,15 +8,15 @@ module.exports = {
 
 function get(){
     return db("tasks as t")
-    .leftJoin("projects as p", "p.id", "t.project_id",)
+    .join("projects as p", "t.project_id", "p.project_id",)
     .select(
-        "t.id", "t.description", "t.notes", "t.completed", "p.name as project_name",
-        "p.description as project_description"
+        "t.task_id", "t.task_description", "t.task_notes", "t.task_completed", "p.project_name as project_name",
+        "p.project_description as project_description"
     )
 }
 function create(task){
-    return db("tasks").insert(task, "id")
-        .then(([id]) => {
-            return db("tasks").where("id", id).first();
+    return db("tasks").insert(task, "task_id")
+        .then((id) => {
+            return db("tasks").where("task_id", id).first();
         });
 }
